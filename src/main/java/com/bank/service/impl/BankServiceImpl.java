@@ -12,6 +12,9 @@ public class BankServiceImpl implements BankService {
         } else if (bankAccount.getBalance() < amount) {
             System.out.println("Bank balance insufficient");
             throw new RuntimeException();
+        } else if (amount <= 0) {
+            System.out.println("Invalid withdraw amount");
+            throw new RuntimeException();
         }
     }
 
