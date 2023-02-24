@@ -68,7 +68,21 @@ public class BankMenuTest {
         System.setIn(storedInputStream);
         bankService = new BankServiceImpl();
         bankMenu = new BankMenu(bankService, bankAccount);
-        
+
+        Assertions.assertDoesNotThrow(() -> bankMenu.menu());
+    }
+
+    @Test
+    public void shouldHandleRuntimeExceptionWhenWithdrawAmountIsInvalid() {
+        String userInput = "c" + System.getProperty("line.separator")
+                + "-10000" + System.getProperty("line.separator")
+                + "a" + System.getProperty("line.separator")
+                + "e";
+        InputStream storedInputStream = (new ByteArrayInputStream(userInput.getBytes()));
+        System.setIn(storedInputStream);
+        bankService = new BankServiceImpl();
+        bankMenu = new BankMenu(bankService, bankAccount);
+
         Assertions.assertDoesNotThrow(() -> bankMenu.menu());
     }
 }
