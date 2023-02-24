@@ -26,7 +26,8 @@ public class BankServiceImplTest {
 
     @Test
     public void shouldNotWithdrawWhenInsufficientBalance(){
-        bankService.withdraw(bankAccount,20000);
+        Assertions.assertThrows(RuntimeException.class,
+                () -> bankService.withdraw(bankAccount, 20000));
         Assertions.assertEquals(10000, bankAccount.getBalance());
     }
 
