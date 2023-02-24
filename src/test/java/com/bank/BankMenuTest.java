@@ -1,6 +1,8 @@
 package com.bank;
 
 import com.bank.service.BankService;
+import com.bank.service.impl.BankServiceImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -54,5 +56,19 @@ public class BankMenuTest {
 
         verify(bankService, times(1)).withdraw(bankAccount, 1000);
 
+    }
+
+    @Test
+    public void shouldHandleRuntimeExceptionWhenWithdrawExceedsBalance() {
+        String userInput = "c" + System.getProperty("line.separator")
+                + "11000" + System.getProperty("line.separator")
+                + "a" + System.getProperty("line.separator")
+                + "e";
+        InputStream storedInputStream = (new ByteArrayInputStream(userInput.getBytes()));
+        System.setIn(storedInputStream);
+        bankService = new BankServiceImpl();
+        bankMenu = new BankMenu(bankService, bankAccount);
+        
+        Assertions.assertDoesNotThrow(() -> bankMenu.menu());
     }
 }
