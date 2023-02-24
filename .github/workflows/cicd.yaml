@@ -21,4 +21,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Release
-          path: target/bank_system-1.0-SNAPSHOT.jar
+          path: target/bank-system-1.0-SNAPSHOT.jar
