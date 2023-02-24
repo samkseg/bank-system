@@ -11,6 +11,7 @@ public class BankServiceImpl implements BankService {
             bankAccount.setPrevTrans(amount);
         } else if (bankAccount.getBalance() < amount) {
             System.out.println("Bank balance insufficient");
+            throw new RuntimeException();
         }
     }
 

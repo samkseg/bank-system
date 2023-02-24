@@ -52,7 +52,12 @@ public class BankMenu {
                     System.out.println("Enter a amount to Withdraw :");
                     System.out.println("......................");
                     double amountWithdraw = sc.nextDouble();
-                    bankService.withdraw(bankAccount, amountWithdraw);
+                    try {
+                        bankService.withdraw(bankAccount, amountWithdraw);
+                    }
+                    catch (RuntimeException e) {
+                        System.out.println("RuntimeException from BankService");
+                    }
                     System.out.println("\n");
                 }
                 case 'd' -> {
